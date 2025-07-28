@@ -1,0 +1,27 @@
+version: "3.8"
+
+services:
+  db:
+    image: mysql:8
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: my-secret-pw
+      MYSQL_DATABASE: joomla
+    volumes:
+      - db_data:/var/lib/mysql
+
+  joomla:
+    image: joomla
+    restart: always
+    ports:
+      - "8080:80"
+    environment:
+      JOOMLA_DB_HOST: db
+      JOOMLA_DB_USER: root
+      JOOMLA_DB_PASSWORD: my-secret-pw
+      JOOMLA_DB_NAME: joomla
+    depends_on:
+      - db
+
+volumes:
+  db_data:

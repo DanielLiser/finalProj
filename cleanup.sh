@@ -1,9 +1,9 @@
 #!/bin/bash
 
-echo "🧹 Stopping and removing containers..."
-docker rm -f my-joomla my-mysql
+echo "Stopping and removing containers..."
+docker-compose down
 
-echo "🗑️ Removing Docker network..."
-docker network rm joomla-net
+echo "Removing volumes..."
+docker volume rm finalproj_db_data
 
-echo "✅ Cleanup completed."
+echo "Cleanup done."

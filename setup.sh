@@ -1,26 +1,57 @@
 #!/bin/bash
 
-echo "Creating Docker network..."
-docker network create joomla-net
+echo "🔧 Setting up Joomla + MySQL environment..."
 
-echo "Starting MySQL container..."
-docker run -d \
-  --name my-mysql \
-  --network joomla-net \
-  -e MYSQL_ROOT_PASSWORD=my-secret-pw \
-  -e MYSQL_DATABASE=joomla_db \
-  -v joomla-mysql-data:/var/lib/mysql \
-  mysql:5.7
+# יוצרים רשת משותפת אם לא קיימת
+echo "🌐 Creating Docker network 'joomla-net' (if not exists)..."
+docker network inspect joomla-net >/dev/null 2>&1 || docker network create joomla-net
 
-echo "Starting Joomla container..."
-docker run -d \
-  --name my-joomla \
-  --network joomla-net \
-  -p 8080:80 \
-  -e JOOMLA_DB_HOST=my-mysql \
-  -e JOOMLA_DB_PASSWORD=my-secret-pw \
-  -e JOOMLA_DB_NAME=joomla_db \
-  -v joomla-html-data:/var/www/html \
-  joomla
+# כותבים את קובץ ה-docker-compose (אם לא קיים כבר)
+if [ ! -f docker-compose.yml ]; then
+  echo "📄 Creating docker-compose.yml..."
+  cat > docker-compose.yml <<EOF
+version: '3.8'
 
-echo "Done! Joomla should be accessible at http://localhost:8080"
+services:
+  db:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: my-secret-pw
+      MYSQL_DATABASE: joomla
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - joomla-net
+
+  joomla:
+    image: joomla
+    restart: always
+    ports:
+      - "8080:80"
+    environment:
+      JOOMLA_DB_HOST: db
+      JOOMLA_DB_USER: root
+      JOOMLA_DB_PASSWORD: my-secret-pw
+      JOOMLA_DB_NAME: joomla
+    depends_on:
+      - db
+    networks:
+      - joomla-net
+
+volumes:
+  db_data:
+
+networks:
+  joomla-net:
+    external: true
+EOF
+else
+  echo "📄 docker-compose.yml already exists. Skipping creation."
+fi
+
+# מרימים את המערכת
+echo "🚀 Launching containers..."
+docker-compose up -d
+
+echo "✅ Setup complete. Joomla is available at: http://localhost:8080"
