@@ -1,0 +1,34 @@
+title,text
+test@,Defines a test case that can be executed to validate functionality. Useful in automated testing workflows.
+Branch,A Git branch is a separate line of development. It allows you to work independently without affecting the main codebase.
+cat,Displays the contents of a file in the terminal. Often used to view or concatenate text files.
+cd,Changes the current directory in the terminal. Example: cd Documents.
+chmod,Changes file permissions in Unix/Linux. You can allow or restrict read/write/execute access.
+clone,"Creates a full local copy of a remote Git repository, including history and branches."
+docker,A containerization platform that runs software in isolated units called containers. Great for consistency and deployment.
+echo,Prints text to the terminal. Example: echo 'Hello world'.
+gedit,A graphical text editor for editing code or text files. Works like Notepad.
+git,A version control tool that tracks code changes and supports collaboration.
+git add,Stages changes for the next commit. Files are marked but not saved yet.
+git push,Sends local repository changes to a remote server like GitHub.
+git replace,Temporarily replaces Git objects for debugging or rewriting history.
+git show,"Displays information about Git objects such as commits, tags, or branches."
+GitHub,A web-based platform for hosting Git repositories with collaboration tools.
+gradle,"A build automation tool for Java, Kotlin, etc. Supports dependency management."
+HTTP,The protocol used for transferring web pages over the internet.
+if (Bash),Conditional command in Bash scripting. Runs code only if the condition is true.
+ls,Lists all files and folders in the current directory.
+man,Displays the manual for a terminal command. Example: man ls.
+marco and polo,marco saves the current directory path; polo returns to it later. Useful for navigation.
+mkdir,Creates a new directory in the terminal. Example: mkdir new_folder.
+MongoDB,"A NoSQL database storing data in flexible, JSON-like documents."
+nano,A simple terminal-based text editor. Used for quick edits.
+pwd,Prints the current working directory path.
+Repository,A Git project directory that tracks versions of your code.
+Terminal,A text-based interface to interact with the system using commands.
+TOKEN,"Used as a secure key to access GitHub or APIs, often in place of a password."
+zsh,A powerful shell similar to Bash with advanced features and customization.
+Bash,A Unix shell and scripting language used to automate tasks and run commands.
+Forking (פיצול),Creates a copy of a repository to work on independently. Common on GitHub.
+ריפוזיטורי,A repository is a place where project files and history are stored.
+שמירת גרסה (commit),Saves a snapshot of project changes with a message describing the update.
