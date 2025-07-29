@@ -3,7 +3,7 @@
 ## Team Members:
 - Idan Amrani
 - Daniel Liser
-- Daniel Barbash
+- Daniel Barabash
 
 ## What We Did:
 - Created automated scripts for setting up, backing up, restoring, and cleaning a Joomla environment with a MySQL database using Docker.
